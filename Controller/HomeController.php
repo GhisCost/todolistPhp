@@ -31,8 +31,9 @@ class HomeController extends BaseController
         if (isset($_SESSION['utilisateur'])) {
             $list = $this->tacheRepository->findAll("taches", $_SESSION['utilisateur']['id']);
 
+            $pseudo=$_SESSION['utilisateur']['pseudo'];
             return $this->render("home/home.html.php", [
-                "bienvenue" => "Bienvenue sur votre todolist !",
+                "bienvenue" => "Bienvenue $pseudo sur votre todolist !",
                 "list" => $list
             ]);
         }
@@ -61,22 +62,44 @@ class HomeController extends BaseController
 
     }
 
+
+
+
+    public function modifierTache()
+    {
+        $this->listHandleRequest->checkModif($this->taches);
+
+        if ($this->listHandleRequest->isValid() && $this->listHandleRequest->isSubmitted()) {
+            if (isset($_SESSION['utilisateur'])) {
+                $this->tacheRepository->modifTache($_POST['idTache'], $_POST['tacheModif']);
+                return redirection(addLink("home", "index"));
+            }
+        }
+
+        $list = isset($_SESSION['utilisateur']['id']) ? $this->tacheRepository->findAll("taches", $_SESSION['utilisateur']['id']) : '';
+        return $this->render("home/home.html.php", [
+            "errors" => $this->listHandleRequest->getErrors(),
+            "list" => $list
+        ]);
+
+    }
+
     public function ajoutTache()
     {
         $this->listHandleRequest->checkAjout($this->taches);
 
         if ($this->listHandleRequest->isValid() && $this->listHandleRequest->isSubmitted()) {
-         
-           if(isset($_SESSION['utilisateur'])){
-            $this->tacheRepository->insertTaches($this->taches);
-            return redirection(addLink("home","index"));
-           } 
+
+            if (isset($_SESSION['utilisateur'])) {
+                $this->tacheRepository->insertTaches($this->taches);
+                return redirection(addLink("home", "index"));
+            }
         }
-        
-        $list = isset($_SESSION['utilisateur']['id']) ? $this->tacheRepository->findAll("taches", $_SESSION['utilisateur']['id']) : '' ;
+
+        $list = isset($_SESSION['utilisateur']['id']) ? $this->tacheRepository->findAll("taches", $_SESSION['utilisateur']['id']) : '';
         return $this->render("home/home.html.php", [
             "errors" => $this->listHandleRequest->getErrors(),
-            "list"=>$list
+            "list" => $list
         ]);
 
     }

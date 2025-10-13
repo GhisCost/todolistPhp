@@ -12,6 +12,10 @@ class ConnexionHandleRequest extends BaseHandleRequest
 
         if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['connexion'])) {
 
+            foreach($_POST as $key=>$value){
+                $_POST[$key]=trim($value);
+            }
+            
             extract($_POST);
 
             $errors = [];
@@ -49,6 +53,7 @@ class ConnexionHandleRequest extends BaseHandleRequest
             }
 
             // Verif le mot de passe
+            
             if (!password_verify($password, $utilisateur->getMotDePasse())) {
                 $errors[] = "Il y a un problème avec votre email ou votre mot de passe";
                 $this->setErrors($errors);

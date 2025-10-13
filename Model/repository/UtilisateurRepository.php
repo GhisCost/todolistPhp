@@ -19,6 +19,7 @@ class UtilisateurRepository extends BaseRepository
                 ":email" => $utilisateur->getEmail(),
                 ":motDePasse" => $utilisateur->getMotDePasse()
             ]);
+
         } catch (PDOException $e) {
             echo $e->getMessage();
             error_log($e->getMessage(), 0);

@@ -10,7 +10,7 @@ class TacheRepository extends BaseRepository
 
     public function insertTaches(Taches $taches)
     {
-        
+
         $sql = "INSERT INTO taches (idUtilisateur,contenu,dateDeCreation) VALUES (:idUtil,:contenu,:dateDeCreation)";
 
         $request = $this->connection->prepare($sql);
@@ -62,6 +62,24 @@ class TacheRepository extends BaseRepository
             echo $e->getMessage();
             error_log($e->getMessage(), 0);
         }
+    }
+
+    public function modifTache($id, $param)
+    {
+        $sql = "UPDATE taches SET contenu = :contenu WHERE taches.id=:id";
+        $request = $this->connection->prepare($sql);
+
+        try {
+            return $request->execute([
+                ":id" => $id,
+                ":contenu" => $param
+            ]);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            error_log($e->getMessage(), 0);
+        }
+
+
     }
 
 

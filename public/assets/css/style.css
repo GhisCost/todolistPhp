@@ -95,16 +95,21 @@ h2 {
   margin: 15px;
 }
 
-.affichList li > a {
+.affichList li a {
   text-decoration: none;
-  color: red;
+  color: #beb07e;
+  border: #beb07e 2px solid;
+  border-radius: 5px;
+  padding: 2px 10px;
+  background-color: rgb(202, 22, 22);
+  font-size: 0.9em;
+  font-weight: 900;
 }
 
 .affichList li {
   font-size: 1.5em;
   margin: 5px;
   color: #beb07e;
-  text-align: start;
   display: flex;
   justify-content: space-between;
   width: 60%;
@@ -170,20 +175,97 @@ nav ul a:hover {
 }
 
 .formConnex label {
-    color: #beb07e;
+  color: #beb07e;
   margin: 15px;
   font-size: 1.8em;
   font-weight: 500;
 }
 
-h3{
-    text-align: center;
-    color: #02d6e6;
-    font-size: 1.8em;
+h3 {
+  text-align: center;
+  color: #02d6e6;
+  font-size: 1.8em;
 }
 
-.erreurCo{
-    color:rgb(206, 11, 11);
-    font-weight: 900;
-    font-size: 1.9em;
+.erreurCo {
+  color: rgb(206, 11, 11);
+  font-weight: 900;
+  font-size: 1.9em;
+}
+
+.modif {
+  display: none;
+  position: absolute;
+}
+
+.montrer {
+  left: 32.5%;
+  top: 21%;
+  display: block;
+  background-color: #28238b;
+  width: 35%;
+  border-radius: 15px;
+  height: 310px;
+}
+
+.montrer form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 55px;
+}
+
+.montrer form label {
+  color: #beb07e;
+  font-size: 1.5em;
+  padding: 10px;
+}
+
+.btnModif {
+  background-color: #beb07e;
+  border: #2c287a 2px solid;
+  border-radius: 5px;
+  color: #2c287a;
+  padding: 6.5px 15px;
+  transition: all 0.5s ease-in-out;
+}
+
+.btnModif:hover {
+  background-color: #2c287a;
+  border: #beb07e 2px solid;
+  color: #beb07e;
+}
+
+#btnSubModif {
+  padding: 5px 25px;
+  background-color: #beb07e;
+  border: #2c287a 2px solid;
+  border-radius: 5px;
+  color: #2c287a;
+  width: 15%;
+  margin-top: 15px;
+  transition: all 0.5s ease-in-out;
+  margin-bottom: 15px;
+}
+
+#btnSubModif:hover {
+  background-color: #2c287a;
+  border: #beb07e 2px solid;
+  color: #beb07e;
+}
+
+#tacheModif {
+  width: 35%;
+  border-radius: 5px;
+  padding: 6px;
+  margin: 15px;
+  border: #02d6e6 1px solid;
+}
+
+.suppModif {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
